@@ -1,0 +1,5 @@
+.*un~
+.venv
+*egg-info/
+remote/config.py
+*.pyc
