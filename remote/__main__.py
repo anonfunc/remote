@@ -1,6 +1,8 @@
 from bottle import route, run
 
 import harmony.util
+import pyroku
+import requests
 
 from remote import config
 
@@ -12,6 +14,7 @@ harmony_client = harmony.util.get_client(config.harmony_ip,
                                          config.harmony_port,
                                          config.harmony_email,
                                          config.harmony_password)
+roku_client = pyroku.Roku(config.roku_ip)
 
 @route('/harmony')
 def harmony():
@@ -33,6 +36,20 @@ def harmony_activity():
 @route('/harmony/activities/<id>')
 def harmony_activity_start(id):
   return harmony_client.start_activity(id)
+
+@route('/roku')
+def roku():
+  return 'channels'
+
+@route('/roku/channel')
+@route('/roku/channels')
+def roku():
+  return requests.get('http://' + roku_client.roku_address + "/query/apps")
+
+@route('/roku/channel/<id>')
+@route('/roku/channels/<id>')
+def roku_launch(id):
+  return requests.post('http://' + roku_client.roku_address + "/launch/" + id)
 
 try:
   run(host='localhost', port=8080, debug=True)
