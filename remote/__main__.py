@@ -57,7 +57,7 @@ def roku_launch(id):
   return requests.post('http://' + roku_client.roku_address + "/launch/" + id)
 
 try:
-  run(host='localhost', port=8080, debug=True)
+  run(host='0.0.0.0', port=9090, debug=True)
 finally:
   harmony_client.disconnect()
 
