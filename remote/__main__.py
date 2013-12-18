@@ -35,7 +35,12 @@ def harmony_activity():
 @route('/harmony/activity/<id>')
 @route('/harmony/activities/<id>')
 def harmony_activity_start(id):
-  return harmony_client.start_activity(id)
+  current = harmony_client.get_current_activity()
+  if str(current) != str(id):
+    print "Current activity is %s, want %s"
+    return harmony_client.start_activity(id)
+  else:
+    return "Current activity is already %s" % id
 
 @route('/roku')
 def roku():
