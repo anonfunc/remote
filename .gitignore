@@ -3,3 +3,4 @@
 *egg-info/
 remote/config.py
 *.pyc
+bower_components/

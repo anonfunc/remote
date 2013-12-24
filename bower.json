@@ -1,0 +1,22 @@
+{
+  "name": "remote",
+  "version": "0.0.0",
+  "homepage": "https://github.com/anonfunc/remote",
+  "authors": [
+    "Dwight Holman <dholman@linkedin.com>"
+  ],
+  "description": "Remote control for Harmony/Sonos/Roku",
+  "license": "See LICENSE.txt",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-css": "~2.3.2",
+    "jquery": "~2.0.2"
+  }
+}

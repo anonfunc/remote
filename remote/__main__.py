@@ -145,6 +145,12 @@ def server_static(filepath):
   module_dir = os.path.dirname(__file__)
   return static_file(filepath, root=os.path.join(module_dir, 'static'))
 
+@route('/bower_components/<filepath:path>')
+def bower_static(filepath):
+  module_dir = os.path.dirname(__file__)
+  bower_dir = os.path.abspath(os.path.join(module_dir, '..', 'bower_components'))
+  return static_file(filepath, root=bower_dir)
+
 try:
   run(host='0.0.0.0', port=9090, debug=True, reloader=True)
 finally:
