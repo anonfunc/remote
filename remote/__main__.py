@@ -1,7 +1,7 @@
 import os
 
-from bottle import route, run, request, abort, static_file
-
+from bottle import route, run, request, abort, static_file, view
+import bottle
 import harmony.util
 import pyroku
 import requests
@@ -11,25 +11,24 @@ from soco import SonosDiscovery
 
 from remote import config
 
-@route('/hello')
-def hello():
-  return "Hello World!"
+bottle.TEMPLATE_PATH.append(os.path.join(os.path.dirname(__file__), 'views'))
 
 harmony_client_obj = None
 def harmony_client():
   global harmony_client_obj
   if harmony_client_obj is None:
     harmony_client_obj = harmony.util.get_client(config.harmony_ip,
-                                             config.harmony_port,
-                                             config.harmony_email,
-                                             config.harmony_password)
+                                                 config.harmony_port,
+                                                 config.harmony_email,
+                                                 config.harmony_password)
   return harmony_client_obj
 
 roku_client = pyroku.Roku(config.roku_ip)
 
 @route('/')
+@view('index')
 def index():
-  return "harmony, sonos, roku"
+  return dict()
 
 @route('/harmony')
 def harmony_index():
