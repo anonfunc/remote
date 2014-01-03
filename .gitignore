@@ -4,3 +4,4 @@
 remote/config.py
 *.pyc
 bower_components/
+fabfile.py
